@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'notes/css/style.css' %}" type="text/css">
+</head>
+<body>
+
+    <!-- <label for="id_form-0-text">text:</label> -->
+    <!-- <input type="text" name="form-0-text" id="id_form-0-text"> -->
+    
+    get:  {{ g }}
+    <hr>
+    post:  {{ p }}
+    
+    <form method="post">
+        {% csrf_token %}
+
+        {% for form in formset %}
+            {% if form.prefix == 'form-0' %}
+                <label for="id_form-0-text">title:</label>
+                <input type="text" name="form-0-text" id="id_form-0-text" value="{{ form.text.value }}"> <!--value="{{ form.text.value }}"-->
+            {% else %}
+                {{ form.as_p }}
+            {% endif %}
+        {% endfor %}
+        <button type="submit" name="new_panel">add</button>
+        <button type="submit" name="add_field">add new field</button>
+    </form>
+
+
+    <!-- вывод уже добавленных todo -->
+    {% for panel in panels %}
+    <div class="panel">
+        <form method="POST" id="loaded-panel">
+            {% csrf_token %}
+        
+            <h3><input type="text" name="title" value="{{ panel.title }}"></h3>
+            <div class="task-out">
+                <ul>
+                    {% for task in panel.task_set.all %}
+                    <div class="task">
+                        <li>
+                            <p><input type="text" name="{{ task.pk }}" value="{{ task.text }}"></p>
+                        </li>
+                    </div>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <button type="submit" name="change" value="{{ panel.pk }}">Изменить</button>
+            <button type="submit" name="del" value="{{ panel.pk }}">удалить</button>
+        
+        </form>
+    </div>
+    {% endfor %}
+
+</body>
+</html>
