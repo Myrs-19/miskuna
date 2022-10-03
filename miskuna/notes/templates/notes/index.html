@@ -43,7 +43,12 @@
                     {% for task in panel.task_set.all %}
                     <div class="task">
                         <li>
-                            <p><input type="text" name="{{ task.pk }}" value="{{ task.text }}"></p>
+                            <p>
+                                <input type="text" name="{{ task.pk }}" value="{{ task.text }}"> 
+                                <button type="submit" name="del-{{ task.pk }}" value="{{ task.pk }}">
+                                    <img src="{% static 'notes/img/del.png' %}" alt="del" height="10" width="10">
+                                </button>
+                            </p>
                         </li>
                     </div>
                     {% endfor %}
@@ -51,7 +56,7 @@
             </div>
 
             <button type="submit" name="change" value="{{ panel.pk }}">Изменить</button>
-            <button type="submit" name="del" value="{{ panel.pk }}">удалить</button>
+            <button type="submit" name="del-panel" value="{{ panel.pk }}">удалить</button>
         
         </form>
     </div>

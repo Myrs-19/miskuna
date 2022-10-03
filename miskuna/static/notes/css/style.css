@@ -1,3 +1,17 @@
 body{
-    background-color: red;
+    background-color: wheat;
 }
+
+.panel{
+    width: 25%;
+    background-color: #14b4b9;
+    clear: both;
+    
+}
+
+.task-out{
+    margin: 2px;
+    background-color: #cf449a;
+}
+
+/* .task{} */
