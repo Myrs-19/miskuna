@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="{% static 'notes/css/style.css' %}" type="text/css">
 </head>
 <body>
+    <p><a href="{% url 'home' %}">home</a></p>
+
+        {% if request.user.is_authenticated %}
+            <p>
+                <a href="{% url 'logout' %}">logout</a>
+            </p>
 
     <!-- <label for="id_form-0-text">text:</label> -->
     <!-- <input type="text" name="form-0-text" id="id_form-0-text"> -->
@@ -61,6 +67,15 @@
         </form>
     </div>
     {% endfor %}
+
+    {% else%}
+            <p>
+                <a href="{% url 'register' %}">register</a>
+                ||
+                <a href="{% url 'login' %}">login</a>
+            </p>
+    {% endif %}
+
 
 </body>
 </html>

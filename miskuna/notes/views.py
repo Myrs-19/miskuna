@@ -1,51 +1,12 @@
 from winreg import QueryValue
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.forms import formset_factory
+from django.contrib import messages
+from django.contrib.auth import login, logout
 
 from .models import *
 from .forms import *
-
-import re
-
-def save_panel(request):
-    for key, item in request.POST.items():
-        if key == 'form-0-text':
-            p = Panel(title=item)
-            p.save()
-        elif "form" in key:
-            t = Task(text=item, panel=p)
-            t.save()
-
-
-# post, change
-def change_panel(request):
-
-    tasks = [Task.objects.get(pk=key) for key, value in request.POST.items() if key.isnumeric()]
-
-    # получаем панель которую будет изменять
-    panel = Panel.objects.get(pk=request.POST['change']) # в request.POST['change'] хранится pk панели
-    panel.title=request.POST['title']
-    panel.save()
-
-    # задачи которые нужно поменять
-    for task in tasks:
-        task.text = request.POST[str(task.pk)] #type(task.pk) - int, ключи словаря request.POST только строки
-        task.save()
-
-
-def del_task(pk):
-    Task.objects.get(pk=pk).delete()
-
-
-def get_key_for_del(request):
-    '''
-        возвращает ключ элемента (task's object), который нужно удалить
-        возвращает пустую строку при отсутствии ключа (пользователь выбрал другое действие)
-    '''
-
-    l_key = [key for key in request.POST.keys() if re.search("del-\d", key)]
-    return "".join(l_key) if l_key else ""
-
+from .logic import *
 
 def index(request):
     # данные для формсета, если уже были заполнены поля, то данные, которые были заполнены, сохранятся по ключу form-N-text 
@@ -98,3 +59,42 @@ def index(request):
     return render(request, "notes/index.html", content)
 
 
+
+def register(request):
+    if request.method == "POST":
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            messages.success(request, 'Регистрация прошло успешно')
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserRegisterForm()
+
+    content = {
+        "form" : form,
+    }
+    return render(request, "notes/register.html", content)
+    
+
+def user_login(request):
+    if request.method == "POST":
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = UserLoginForm()
+
+    content = {
+        "form" : form,
+    }
+    return render(request, "notes/login.html", content)
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('login')
