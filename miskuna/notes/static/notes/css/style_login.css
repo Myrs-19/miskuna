@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+*,*:before,*:after{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+:focus,:active{outline: none;}
+a:focus,a:active{outline: none;}
+
+nav,footer,header,aside{display:block;}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 20px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust:  100%;
+    -webkit-text-size-adjust: 100%;
+    font-family: Comfortaa;
+    font-weight: 400;
+    color: #EDE8E3;
+    
+   
+}
+input,button,textarea{font-family: Comfortaa;}
+
+input::-ms-clear{display: none;}
+button{cursor: pointer;}
+button::-moz-focus-inner{padding: 0; border: 0;}
+a,a:visited{text-decoration: none;}
+a:hover{text-decoration: none;}
+ul li{list-style: none;}
+img{vertical-align: top;}
+h1,h2,h3,h4,h5,h6{font-size: inherit;font-weight: 400;}
+
+
+body{
+    background-color: #000000cb;
+    
+    }
+
+
+
+.page {
+
+}
+.page__main-block {
+}
+.main-block {
+}
+.main-block__container {
+}
+._container {
+    max-width: 498px;
+    margin: 0 auto;
+    padding: 0 15px;
+    box-sizing: content-box;
+    
+}
+.main-block__body {
+    padding: 25% 0 0 0px;
+    max-width: 100%;
+    position: relative;
+    z-index: 3;
+}
+.form {
+    border: 1px solid #11141695;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.282);
+    display: block;
+}
+.form__title {
+    padding: 0 0 0px 0 ;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    max-width: 100%;
+}
+._container-flex-colum {
+    padding: 30px 10px;
+    max-width: 100%;
+}
+.form__item {
+    text-align: center;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+.form__item__error {
+    text-align: left;
+    margin-bottom: 10px;
+    max-width: 100%;
+}
+.form__lable {
+    font-weight: 300;
+    font-size: 16px;
+    display: block;
+    padding: 15px;
+}
+.form__input {
+    
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 18px;
+    border-color: #FFF;
+    color: inherit;
+    outline: none;
+    line-height: 150%;
+    color: black;
+}
+.form__input::placeholder {
+    color: #212529;
+    opacity: 0.4;
+  }
+textarea.form__input{
+    min-width: 702px;
+    min-height: 270px;
+    resize: none;
+    
+}
+.form__userPassword {
+}
+
+  
+.form__button {
+    margin: 0px 185px 10px 185px;
+    padding: 15px 20px;
+    border-radius: 30px;
+    font-weight: 300;
+    font-size: 20px;
+    background-color: rgb(255, 179, 0);
+    border: 2px solid rgb(255, 179, 0);
+}

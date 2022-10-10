@@ -1,12 +1,15 @@
+from email.policy import default
 from django.db import models
 from django.urls import reverse
-# Create your models here.
+
+#мои импорты django
+from django.contrib.auth.models import User
+
 
 class Panel(models.Model):
     title = models.CharField(max_length=100)
-    
-    def get_absolute_url(self):
-        return reverse("add")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=1) #pk=1 - запись админа admin_Mike 
+
 
 class Task(models.Model):
     text = models.TextField()

@@ -5,7 +5,7 @@ import re
 def save_panel(request):
     for key, item in request.POST.items():
         if key == 'form-0-text':
-            p = Panel(title=item)
+            p = Panel(title=item, user=request.user)
             p.save()
         elif "form" in key:
             t = Task(text=item, panel=p)

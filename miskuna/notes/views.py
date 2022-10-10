@@ -49,7 +49,7 @@ def index(request):
 
     # form = FormTask()
     content = {
-        'panels' : Panel.objects.all(),
+        'panels' : Panel.objects.filter(user_id=request.user.pk),
         # 'form' : form,
         'formset' : formset(data),
         'g' : request.GET,
@@ -92,7 +92,12 @@ def user_login(request):
     content = {
         "form" : form,
     }
-    return render(request, "notes/login.html", content)
+    return render(request, "notes/login1.html", content)
+
+
+def user_login1(request):
+    return render(request, 'notes/login1.html')
+
 
 
 def user_logout(request):
