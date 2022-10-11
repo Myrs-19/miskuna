@@ -138,3 +138,13 @@ textarea.form__input{
     background-color: rgb(255, 179, 0);
     border: 2px solid rgb(255, 179, 0);
 }
+
+.error{
+    color:red;
+    text-align: center;
+}
+
+.success{
+    color:green;
+    text-align: center;
+}

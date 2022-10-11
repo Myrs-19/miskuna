@@ -77,7 +77,7 @@ def register(request):
         "form" : form,
     }
     return render(request, "notes/register.html", content)
-    
+
 
 def user_login(request):
     if request.method == "POST":
@@ -92,11 +92,7 @@ def user_login(request):
     content = {
         "form" : form,
     }
-    return render(request, "notes/login1.html", content)
-
-
-def user_login1(request):
-    return render(request, 'notes/login1.html')
+    return render(request, "notes/login.html", content)
 
 
 

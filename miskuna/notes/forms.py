@@ -14,19 +14,44 @@ class FormTask(forms.Form):
 class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
         label='Имя пользователя',
-        widget=forms.TextInput()
+        widget=forms.TextInput(attrs={
+            'id' : "forName",
+            'type' : "text",
+            'name' : "name",
+            'class' : "form__input",
+            'placeholder' : "Имя*:",
+        })
     )
+    
     email = forms.EmailField(
         label='Почта',
-        widget=forms.EmailInput()
+        widget=forms.EmailInput(attrs={
+            'id' : "forEmail", 
+            'type' : "text", 
+            'name' : "Email", 
+            'class' : "form__input", 
+            'placeholder' : "E-mail*",
+        })
     )
     password1 = forms.CharField(
         label='Пароль',
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={
+            'id' : "userPassword",
+            'type' : "password",
+            'name' : "Пароль",
+            'class' : "form__input",  
+            'placeholder' : "Пароль",
+        })
     )
     password2 = forms.CharField(
         label='Повторите пароль',
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={
+            'id' : "userPassword",
+            'type' : "password",
+            'name' : "Пароль",
+            'class' : "form__input",  
+            'placeholder' : "Пароль",
+        })
     )
 
     class Meta:

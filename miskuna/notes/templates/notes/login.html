@@ -1,31 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
-    {% load static %}
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="{% static 'notes/css/tags.css' %}">
-    <link rel="stylesheet" href="{% static 'notes/css/style.css' %}">
-</head>
-<body>
-    <p><a href="{% url 'home' %}">home</a></p>
-
-    <p>
-        {% if request.user.is_authenticated %}
-            <a href="{% url 'logout' %}">logout</a>
-        {% else %}
-            <a href="{% url 'register' %}">register</a>
-            ||
-            <a href="{% url 'login' %}">login</a>
-        
-        {% endif %}
-    </p>
+{% load static %}
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>To do</title>
+    <link rel="stylesheet" href="{% static 'notes/css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'notes/css/style_lr.css' %}"/>
     
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
+    </head>
+    <body>
+        <p><a href="{% url 'home' %}">home</a></p>
 
-        <button type="submit">login</button>
-    </form>
-</body>
+        <p>
+            {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}">logout</a>
+            {% else%}
+                <a href="{% url 'register' %}">register</a>
+                ||
+                <a href="{% url 'login' %}">login</a>
+            
+            {% endif %}
+        </p>
+
+        <div class="wrapper">
+            <div class="main-blocl__image _ibg"></div>
+            <header class="header">
+                
+            </header>
+            <main class="page">
+                <div class="page__main-block main-block">
+                    <div class="main-block__container _container">
+                        <div class="main-block__body">
+                            <div class="form">
+
+                                <form method="post" id="form__form__body">
+                                    {% csrf_token %}
+                                    <h2 class="form__title">Вход в аккаунт</h2>
+                                        <div class="_container-flex-colum">
+
+                                            
+                                            
+                                            {{ form.non_field_errors }}
+                                            <div class="form__item__error">
+                                                {{ form.message.errors }}
+                                            </div>
+                                            
+
+                                            
+                                            {% for field in form %}
+                                            <div class="form__item ">
+                                                {{ field.error }}
+                                                <label for="forName" class="form__lable">{{field.label}}</label>
+                                                {{field}}
+                                            </div>
+                                            {% endfor %}
+                                            
+                                            
+                                        
+                                        </div>
+                                            <button type="submit" class="form__button">Вход</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+            </main>
+            <footer class="footer">
+                
+            </footer>
+        </div>
+    </body>
 </html>

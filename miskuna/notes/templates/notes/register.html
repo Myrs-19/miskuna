@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static 'notes/css/tags.css' %}">
-    <link rel="stylesheet" href="{% static 'notes/css/style.css' %}">
+    
+    
+    <link rel="stylesheet" href="{% static 'notes/css/style_lr.css' %}">
+    
 </head>
 <body>
     <p><a href="{% url 'home' %}">home</a></p>
@@ -21,24 +23,59 @@
         {% endif %}
     </p>
 
-    {% if messages %}
+    <div class="wrapper">
+        <div class="main-blocl__image _ibg"></div>
+        <header class="header">
+            
+        </header>
+        <main class="page">
+            <div class="page__main-block main-block">
+                <div class="main-block__container _container">
+                    <div class="main-block__body">
+                        <div class="form">
 
-        {% for message in messages %}
+                            
 
-            <div class="{{message.tags}}">
-                {{ message }}
-            </div>
 
-        {% endfor %}
+                            <form method="post" id="form__form__body">
+                                {% csrf_token %}
+                                <h2 class="form__title">Регистрация</h2>
+                                    <div class="_container-flex-colum">
 
-    {% endif %}
+                                        
+                                        {% if messages %}
+                                        
+                                        {% for message in messages %}
+                                        
+                                        <div class="{{message.tags}}">
+                                            {{ message }}
+                                        </div>
+                                        
+                                        {% endfor %}
+                                        
+                                        {% endif %}
 
-    
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
 
-        <button type="submit">register</button>
-    </form>
+                                        {% for field in form %}
+                                        <div class="form__item ">
+                                            <label for="forName" class="form__lable">{{field.label}}</label>
+                                            {{field}}
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        
+                                    
+                                    </div>
+                                        <button type="submit" class="form__button">log up</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </main>
+        <footer class="footer">
+            
+        </footer>
 </body>
 </html>
